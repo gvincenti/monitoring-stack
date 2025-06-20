@@ -52,7 +52,7 @@ services:
     depends_on:
       - gearmand
     volumes:
-      - ./worker/worker.conf:/usr/local/etc/nagios-mod-gearman/worker.conf:ro
+      - ./worker/worker.conf:/usr/local/etc/mod_gearman/worker.conf:ro
     networks:
       - monitoring
 
@@ -62,7 +62,7 @@ services:
     depends_on:
       - gearmand
     volumes:
-      - ./worker/worker.conf:/usr/local/etc/nagios-mod-gearman/worker.conf:ro
+      - ./worker/worker.conf:/usr/local/etc/mod_gearman/worker.conf:ro
     networks:
       - monitoring
 
@@ -72,7 +72,7 @@ services:
     depends_on:
       - gearmand
     volumes:
-      - ./worker/worker.conf:/usr/local/etc/nagios-mod-gearman/worker.conf:ro
+      - ./worker/worker.conf:/usr/local/etc/mod_gearman/worker.conf:ro
     networks:
       - monitoring
 
