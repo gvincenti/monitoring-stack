@@ -20,6 +20,7 @@ services:
       - mysql
     volumes:
       - ./naemon/etc/naemon:/etc/naemon
+      - ./naemon/etc/conf.d:/etc/naemon/conf.d
       - ./naemon/var:/var/log/naemon
       - ./naemon/lib:/var/lib/naemon
     networks:
