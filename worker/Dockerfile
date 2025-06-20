@@ -12,8 +12,10 @@ RUN apt-get update && \
     autoconf \
     libtool \
     libncurses-dev \
-    ca-certificates
-
+    ca-certificates \
+    automake \
+    pkg-config \
+    git
 
 # Clonar el repositorio oficial actual
 RUN git clone https://github.com/NagiosEnterprises/nagios-mod-gearman.git /opt/mod-gearman && \
