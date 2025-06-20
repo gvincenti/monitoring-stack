@@ -55,6 +55,8 @@ services:
       - ./worker/worker.conf:/usr/local/etc/mod_gearman/worker.conf:ro
     networks:
       - monitoring
+    entrypoint: ["tail", "-f", "/dev/null"]
+    command: []
 
   worker2:
     build: ./worker
@@ -65,6 +67,8 @@ services:
       - ./worker/worker.conf:/usr/local/etc/mod_gearman/worker.conf:ro
     networks:
       - monitoring
+    entrypoint: ["tail", "-f", "/dev/null"]
+    command: []
 
   worker3:
     build: ./worker
@@ -75,6 +79,8 @@ services:
       - ./worker/worker.conf:/usr/local/etc/mod_gearman/worker.conf:ro
     networks:
       - monitoring
+    entrypoint: ["tail", "-f", "/dev/null"]
+    command: []
 
   pnp4nagios:
     build: ./pnp4nagios
