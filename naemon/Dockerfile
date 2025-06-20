@@ -22,4 +22,6 @@ RUN useradd -m -s /bin/bash naemon && \
 
 VOLUME ["/etc/naemon", "/var/lib/naemon", "/var/log/naemon"]
 
+USER naemon
+
 CMD ["/usr/local/bin/naemon", "/etc/naemon/naemon.cfg"]
