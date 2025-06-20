@@ -21,11 +21,9 @@ RUN git clone https://github.com/NagiosEnterprises/nagios-mod-gearman.git /opt/m
  && make all \
  && make install
 
-# crea el path donde el worker busca su conf POR DEFECTO
 RUN mkdir -p /usr/local/etc/mod_gearman
 
-# copiar la conf
 COPY worker.conf /usr/local/etc/mod_gearman/worker.conf
 
-# arranca sin flags extra
-CMD ["/usr/local/bin/nagios-mod-gearman-worker"]
+# No le pases flags: el binario lee automáticamente la conf
+CMD ["nagios-mod-gearman-worker"]
