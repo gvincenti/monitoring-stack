@@ -41,7 +41,7 @@ services:
       - monitoring
 
   gearmand:
-    image: gehrig/gearman
+    image: samuelebistoletti/docker-gearman
     container_name: gearmand
     ports:
       - "4730:4730"
