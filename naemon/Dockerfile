@@ -19,9 +19,9 @@ RUN cd /opt && \
 
 # Instalar LMD (Livestatus)
 RUN cd /opt && \
-    git clone https://github.com/sni/livestatus.git && \
-    cd livestatus && \
-    cmake . && make && make install
+    git clone https://github.com/tribe29/checkmk.git && \
+    cd checkmk/livestatus && \
+    ./autogen.sh && ./configure && make && make install
 
 # Crear usuario y grupo naemon
 RUN useradd -m -s /bin/bash naemon && \
