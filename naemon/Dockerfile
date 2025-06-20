@@ -18,6 +18,8 @@ RUN useradd -m -s /bin/bash naemon
 RUN mkdir -p /etc/naemon /var/log/naemon /var/lib/naemon/spool/checkresults && \
     chown -R naemon:naemon /etc/naemon /var/log/naemon /var/lib/naemon
 
+ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+
 USER naemon
 
 CMD ["/usr/local/bin/naemon", "/etc/naemon/naemon.cfg"]
