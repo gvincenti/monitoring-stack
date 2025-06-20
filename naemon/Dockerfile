@@ -11,8 +11,9 @@ RUN apt-get update && apt-get install -y \
 RUN cd /opt && \
     git clone https://github.com/naemon/naemon-core.git && \
     cd naemon-core && \
-    ./autogen.sh && ./configure && make && make install
-
+    ./autogen.sh && ./configure && make && make install && \
+    echo "/usr/local/lib" > /etc/ld.so.conf.d/usr-local-lib.conf && ldconfig
+    
 RUN useradd -m -s /bin/bash naemon
 
 # Copiar configuración sample-config si existe
