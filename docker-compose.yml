@@ -1,0 +1,99 @@
+version: '3.8'
+
+services:
+
+  mysql:
+    image: mariadb:10.5
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: nconf
+      MYSQL_USER: nconf
+      MYSQL_PASSWORD: nconfpass
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    networks:
+      - monitoring
+
+  naemon:
+    build: ./naemon
+    container_name: naemon
+    depends_on:
+      - mysql
+    volumes:
+      - ./naemon/etc:/etc/naemon
+      - ./naemon/var:/var/log/naemon
+      - ./naemon/lib:/var/lib/naemon
+      - naemon-live:/var/lib/naemon
+    networks:
+      - monitoring
+
+  thruk:
+    build: ./thruk
+    container_name: thruk
+    depends_on:
+      - naemon
+    ports:
+      - "8080:80"
+    volumes:
+      - naemon-live:/var/lib/naemon
+    networks:
+      - monitoring
+
+  gearmand:
+    image: gehrig/gearman
+    container_name: gearmand
+    ports:
+      - "4730:4730"
+    networks:
+      - monitoring
+
+  worker1:
+    build: ./worker
+    container_name: worker1
+    depends_on:
+      - gearmand
+    networks:
+      - monitoring
+
+  worker2:
+    build: ./worker
+    container_name: worker2
+    depends_on:
+      - gearmand
+    networks:
+      - monitoring
+
+  worker3:
+    build: ./worker
+    container_name: worker3
+    depends_on:
+      - gearmand
+    networks:
+      - monitoring
+
+  pnp4nagios:
+    build: ./pnp4nagios
+    container_name: pnp4nagios
+    depends_on:
+      - naemon
+      - mysql
+    networks:
+      - monitoring
+
+  nconf:
+    build: ./nconf
+    container_name: nconf
+    ports:
+      - "8888:80"
+    depends_on:
+      - mysql
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
+
+volumes:
+  naemon-live:
