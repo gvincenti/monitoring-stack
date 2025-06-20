@@ -20,10 +20,11 @@ RUN useradd -m -s /bin/bash naemon && \
     mkdir -p /var/log/naemon /var/lib/naemon/spool/checkresults && \
     chown -R naemon:naemon /var/log/naemon /var/lib/naemon
 
-# 🔁 Descarga alternativa de configuración oficial
-RUN mkdir -p /etc/naemon && \
-    curl -sSL https://codeload.github.com/naemon/naemon-etc/tar.gz/master | \
-    tar xz --strip-components=1 -C /etc/naemon && \
+# Asumimos que el tar está junto al Dockerfile
+ADD naemon-etc.tar.gz /etc/naemon/
+
+RUN mv /etc/naemon/naemon-etc-master/* /etc/naemon/ && \
+    rmdir /etc/naemon/naemon-etc-master && \
     chown -R naemon:naemon /etc/naemon
 
 VOLUME ["/etc/naemon", "/var/lib/naemon", "/var/log/naemon"]
