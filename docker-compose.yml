@@ -22,7 +22,6 @@ services:
       - ./naemon/etc:/etc/naemon
       - ./naemon/var:/var/log/naemon
       - ./naemon/lib:/var/lib/naemon
-      - naemon-live:/var/lib/naemon
     networks:
       - monitoring
 
