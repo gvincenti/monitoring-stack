@@ -51,6 +51,8 @@ services:
     container_name: worker1
     depends_on:
       - gearmand
+    volumes:
+      - ./worker/worker.conf:/usr/local/etc/nagios-mod-gearman/worker.conf:ro
     networks:
       - monitoring
 
@@ -59,6 +61,8 @@ services:
     container_name: worker2
     depends_on:
       - gearmand
+    volumes:
+      - ./worker/worker.conf:/usr/local/etc/nagios-mod-gearman/worker.conf:ro
     networks:
       - monitoring
 
@@ -67,6 +71,8 @@ services:
     container_name: worker3
     depends_on:
       - gearmand
+    volumes:
+      - ./worker/worker.conf:/usr/local/etc/nagios-mod-gearman/worker.conf:ro
     networks:
       - monitoring
 
