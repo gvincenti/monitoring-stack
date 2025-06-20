@@ -9,8 +9,9 @@ RUN apt-get update && \
 
 # Instalar PNP4Nagios desde el repo oficial
 RUN cd /opt && \
-    git clone https://github.com/lingej/pnp4nagios.git && \
-    cd pnp4nagios && ./configure --with-rrdtool=/usr/bin/rrdtool && \
+    git clone https://github.com/pnp4nagios/pnp4nagios.git && \
+    cd pnp4nagios && \
+    ./configure --with-rrdtool=/usr/bin/rrdtool && \
     make all && make install && make install-webconf && make install-config && make install-init
 
 # Activar módulos requeridos de Apache
