@@ -19,9 +19,10 @@ services:
     depends_on:
       - mysql
     volumes:
-      - ./naemon/etc:/etc/naemon
+      - ./naemon/etc/naemon:/etc/naemon
       - ./naemon/var:/var/log/naemon
       - ./naemon/lib:/var/lib/naemon
+      - naemon-live:/var/lib/naemon
     networks:
       - monitoring
 

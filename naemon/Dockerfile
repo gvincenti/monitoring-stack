@@ -1,5 +1,3 @@
-# Dockerfile ejemplo para naemon
-
 FROM debian:bullseye
 
 RUN apt-get update && apt-get install -y \
@@ -10,22 +8,15 @@ RUN apt-get update && apt-get install -y \
     rrdtool librrds-perl gperf libncurses-dev sudo && \
     rm -rf /var/lib/apt/lists/*
 
-# Clonar y compilar naemon-core
 RUN cd /opt && \
     git clone https://github.com/naemon/naemon-core.git && \
     cd naemon-core && \
-    ./autogen.sh && ./configure && make && make install && ldconfig
+    ./autogen.sh && ./configure && make && make install
 
-# Crear usuario naemon
 RUN useradd -m -s /bin/bash naemon
 
-# Copiar configuraciones locales
-COPY etc/naemon/naemon.cfg /etc/naemon/naemon.cfg
-COPY etc/naemon/resource.cfg /etc/naemon/resource.cfg
-
-# Crear carpetas para logs y spool
-RUN mkdir -p /var/log/naemon /var/lib/naemon/spool/checkresults && \
-    chown -R naemon:naemon /var/log/naemon /var/lib/naemon /etc/naemon
+RUN mkdir -p /etc/naemon /var/log/naemon /var/lib/naemon/spool/checkresults && \
+    chown -R naemon:naemon /etc/naemon /var/log/naemon /var/lib/naemon
 
 USER naemon
 
