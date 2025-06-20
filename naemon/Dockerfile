@@ -25,11 +25,11 @@ RUN mkdir -p /etc/naemon /var/log/naemon /var/lib/naemon/spool/checkresults && \
 
 ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
-# Cambiar a usuario naemon
-USER naemon
-
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+USER naemon
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Ejecutar naemon como ese usuario
