@@ -20,10 +20,11 @@ RUN apt-get update && \
     help2man && \
     rm -rf /var/lib/apt/lists/*
 
-# Clonar y compilar mod_gearman
+# Clonar y compilar mod_gearman, luego listar binarios instalados
 RUN git clone https://github.com/NagiosEnterprises/nagios-mod-gearman.git /opt/mod-gearman && \
     cd /opt/mod-gearman && \
-    ./autogen.sh && ./configure && make all && make install
+    ./autogen.sh && ./configure && make all && make install && \
+    ls -l /usr/local/bin/
 
 # Copiar configuración del worker
 COPY worker.conf /etc/mod_gearman/worker.conf
