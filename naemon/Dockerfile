@@ -7,23 +7,9 @@ RUN apt-get update && \
     wget curl gnupg2 ca-certificates build-essential \
     libglib2.0-dev libmcrypt-dev libssl-dev \
     apache2-utils apache2 php php-cli php-mysql \
-    git autoconf automake libtool \
-    build-essential \
-    autoconf \
-    automake \
-    libtool \
-    pkg-config \
-    help2man \
-    libglib2.0-dev \
-    libmcrypt-dev \
-    libssl-dev \
-    apache2-utils \
-    apache2 \
-    php \
-    php-cli \
-    php-mysql \
-    rrdtool librrds-perl gperf \
-    && rm -rf /var/lib/apt/lists/*
+    git autoconf automake libtool pkg-config help2man \
+    rrdtool librrds-perl gperf cmake && \
+    rm -rf /var/lib/apt/lists/*
 
 # Instalar Naemon
 RUN cd /opt && \
@@ -42,6 +28,6 @@ RUN useradd -m -s /bin/bash naemon && \
     mkdir -p /var/log/naemon /var/lib/naemon/spool/checkresults && \
     chown -R naemon:naemon /var/log/naemon /var/lib/naemon
 
-VOLUME [\"/etc/naemon\", \"/var/lib/naemon\", \"/var/log/naemon\"]
+VOLUME ["/etc/naemon", "/var/lib/naemon", "/var/log/naemon"]
 
-CMD [\"/usr/local/bin/naemon\", \"/etc/naemon/naemon.cfg\"]
+CMD ["/usr/local/bin/naemon", "/etc/naemon/naemon.cfg"]
