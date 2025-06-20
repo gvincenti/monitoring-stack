@@ -13,13 +13,17 @@ RUN cd /opt && \
     cd naemon-core && \
     ./autogen.sh && ./configure && make && make install
 
+# Crear usuario
 RUN useradd -m -s /bin/bash naemon
 
+# Crear directorios necesarios con permisos amplios
 RUN mkdir -p /etc/naemon /var/log/naemon /var/lib/naemon/spool/checkresults && \
-    chown -R naemon:naemon /etc/naemon /var/log/naemon /var/lib/naemon
+    chown -R naemon:naemon /etc/naemon /var/log/naemon /var/lib/naemon && \
+    chmod -R 777 /var/lib/naemon /var/log/naemon
 
 ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
-USER naemon
+# ⚠️ Usamos root para poder levantar el proceso sin errores de permisos
+USER root
 
 CMD ["/usr/local/bin/naemon", "/etc/naemon/naemon.cfg"]
