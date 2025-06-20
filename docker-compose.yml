@@ -20,8 +20,9 @@ services:
       - mysql
     volumes:
       - ./naemon/etc/naemon:/etc/naemon
-      - ./naemon/var:/usr/local/var/log/naemon
       - ./naemon/var:/var/log/naemon
+      - ./naemon/spool/checkresults:/usr/local/var/spool/checkresults
+      - ./naemon/pnp4nagios/var:/usr/local/pnp4nagios/var
     networks:
       - monitoring
 

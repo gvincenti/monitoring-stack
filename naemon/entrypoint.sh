@@ -1,9 +1,8 @@
 #!/bin/bash
 set -e
 
-# Cambiar permisos por si un volumen sobreescribe los del Dockerfile
-chown -R naemon:naemon /var/lib/naemon /var/log/naemon /etc/naemon
+# Ajustar permisos para que Naemon pueda escribir en logs y datos
+chown -R naemon:naemon /var/lib/naemon /var/log/naemon /etc/naemon /usr/local/var/spool/checkresults /usr/local/pnp4nagios/var
 
-# Ejecutar como usuario naemon
+# Ejecutar Naemon como usuario 'naemon'
 exec /usr/local/bin/naemon /etc/naemon/naemon.cfg
-
