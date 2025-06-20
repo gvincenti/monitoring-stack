@@ -12,7 +12,7 @@ RUN cd /opt && \
     git clone https://github.com/pnp4nagios/pnp4nagios.git && \
     cd pnp4nagios && \
     ./configure --with-rrdtool=/usr/bin/rrdtool && \
-    make all && make install && make install-webconf && make install-config && make install-init
+    make all && make install && make install-webconf && make install-config
 
 # Activar módulos requeridos de Apache
 RUN a2enmod php && a2enmod cgi && service apache2 restart
