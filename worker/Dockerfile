@@ -28,5 +28,4 @@ RUN mkdir -p /usr/local/etc/nagios-mod-gearman
 COPY worker.conf /usr/local/etc/nagios-mod-gearman/worker.conf
 
 # arranca el worker correcto
-CMD ["/usr/local/bin/nagios-mod-gearman-worker", \
-     "-c", "/usr/local/etc/nagios-mod-gearman/worker.conf"]
+CMD ["/usr/local/bin/nagios-mod-gearman-worker"]
