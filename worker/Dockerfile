@@ -19,9 +19,9 @@ RUN apt-get update && \
 
 # Clonar el repositorio oficial actual y compilar
 RUN git clone https://github.com/NagiosEnterprises/nagios-mod-gearman.git /opt/mod-gearman && \
-    cd /opt/mod-gearman && ./autogen.sh && ./configure && make all && make install \
+    cd /opt/mod-gearman && ./autogen.sh && ./configure && make all && make install && \
     ls -l /usr/local/bin
-    
+
 CMD ["mod_gearman_worker"]
 
 
