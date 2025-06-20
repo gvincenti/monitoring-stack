@@ -8,7 +8,7 @@ RUN apt-get update && \
     libglib2.0-dev libmcrypt-dev libssl-dev \
     apache2-utils apache2 php php-cli php-mysql \
     git autoconf automake libtool \
-    rrdtool librrds-perl \
+    rrdtool librrds-perl gperf \
     && rm -rf /var/lib/apt/lists/*
 
 # Instalar Naemon
