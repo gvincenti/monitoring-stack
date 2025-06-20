@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
 
   mysql:
@@ -41,7 +39,7 @@ services:
       - monitoring
 
   gearmand:
-    image: samuelebistoletti/docker-gearman
+    image: artefactual/gearmand:latest
     container_name: gearmand
     ports:
       - "4730:4730"
