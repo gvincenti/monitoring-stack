@@ -20,8 +20,8 @@ RUN cd /opt && \
 RUN useradd -m -s /bin/bash naemon
 
 # Copiar configuraciones locales
-COPY etc/naemon.cfg /etc/naemon/naemon.cfg
-COPY resource.cfg /etc/naemon/resource.cfg
+COPY etc/naemon/naemon.cfg /etc/naemon/naemon.cfg
+COPY etc/naemon/resource.cfg /etc/naemon/resource.cfg
 
 # Crear carpetas para logs y spool
 RUN mkdir -p /var/log/naemon /var/lib/naemon/spool/checkresults && \
