@@ -29,8 +29,7 @@ RUN apt-get update && \
 RUN cd /opt && \
     git clone https://github.com/naemon/naemon-core.git && \
     cd naemon-core && \
-    ./autogen.sh && ./configure && make && make install && \
-    make install-init
+    ./autogen.sh && ./configure && make && make install
 
 # Instalar LMD (Livestatus)
 RUN cd /opt && \
