@@ -9,6 +9,9 @@ RUN apt-get update && \
     gearman-tools \
     build-essential \
     libgearman-dev \
+    libncurses-dev \
+    libssl-dev \
+    libglib2.0-dev \
     git \
     autoconf \
     automake \
