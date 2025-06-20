@@ -21,9 +21,11 @@ RUN git clone https://github.com/NagiosEnterprises/nagios-mod-gearman.git /opt/m
  && make all \
  && make install
 
-# copia la configuración al path por defecto
+# Crea el path por defecto
 RUN mkdir -p /usr/local/etc/nagios-mod-gearman
+
+# Copia ahí tu conf
 COPY worker.conf /usr/local/etc/nagios-mod-gearman/worker.conf
 
-# arranca el worker sin argumentos; ya encontrará su worker.conf
+# Arranca el worker sin switches extra
 CMD ["/usr/local/bin/nagios-mod-gearman-worker"]
