@@ -24,7 +24,7 @@ services:
       - ./naemon/var:/var/log/naemon
     networks:
       - monitoring
-    command: ["/bin/bash"]
+
   thruk:
     build: ./thruk
     container_name: thruk
