@@ -22,7 +22,7 @@ RUN useradd -m -s /bin/bash naemon && \
 
 # 🔁 Descarga alternativa de configuración oficial
 RUN mkdir -p /etc/naemon && \
-    curl -sSL https://codeload.github.com/naemon/naemon-etc/tar.gz/refs/heads/master | \
+    curl -sSL https://codeload.github.com/naemon/naemon-etc/tar.gz/master | \
     tar xz --strip-components=1 -C /etc/naemon && \
     chown -R naemon:naemon /etc/naemon
 
