@@ -15,11 +15,12 @@ RUN apt-get update && \
     ca-certificates \
     automake \
     pkg-config \
-    git
+    libssl-dev
 
-# Clonar el repositorio oficial actual
+# Clonar el repositorio oficial actual y compilar
 RUN git clone https://github.com/NagiosEnterprises/nagios-mod-gearman.git /opt/mod-gearman && \
     cd /opt/mod-gearman && ./autogen.sh && ./configure && make all && make install
 
 CMD ["mod_gearman_worker"]
+
 
