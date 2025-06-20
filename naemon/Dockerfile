@@ -15,6 +15,11 @@ RUN cd /opt && \
     cd naemon-core && \
     ./autogen.sh && ./configure && make && make install && ldconfig
 
+RUN mkdir -p /etc/naemon && \
+    cp /opt/naemon-core/sample-config/naemon.cfg /etc/naemon/ && \
+    cp /opt/naemon-core/sample-config/resource.cfg /etc/naemon/ && \
+    cp -r /opt/naemon-core/sample-config/objects /etc/naemon/
+    
 # Crear usuario y grupo naemon y preparar carpetas
 RUN useradd -m -s /bin/bash naemon && \
     mkdir -p /var/log/naemon /var/lib/naemon/spool/checkresults && \

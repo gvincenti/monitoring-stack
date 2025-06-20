@@ -21,4 +21,6 @@ RUN git clone https://github.com/NagiosEnterprises/nagios-mod-gearman.git /opt/m
     cd /opt/mod-gearman && ./autogen.sh && ./configure && make all && make install && \
     ls -l /usr/local/bin && ls -l /usr/local/sbin && ls -l /usr/bin
 
-CMD ["/usr/local/bin/nagios-mod-gearman-worker"]
+COPY worker.conf /usr/local/etc/nagios-mod-gearman/worker.conf
+
+CMD ["mod_gearman_worker", "-c", "/usr/local/etc/nagios-mod-gearman/worker.conf"]
