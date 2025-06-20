@@ -71,7 +71,7 @@ services:
       - monitoring
 
   pnp4nagios:
-    build: ./pnp4nagios
+    build: ././pnp4nagios
     container_name: pnp4nagios
     depends_on:
       - naemon
