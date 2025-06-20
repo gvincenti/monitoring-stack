@@ -13,7 +13,7 @@ RUN apt-get update && \
 RUN cd /opt && \
     git clone https://github.com/naemon/naemon-core.git && \
     cd naemon-core && \
-    ./autogen.sh && ./configure && make && make install
+    ./autogen.sh && ./configure && make && make install && ldconfig
 
 # Crear usuario y grupo naemon y preparar carpetas
 RUN useradd -m -s /bin/bash naemon && \
