@@ -1,0 +1,33 @@
+# Archivos y carpetas de Docker
+**/data/
+**/var/
+**/lib/
+naemon-live/
+
+# Configuraciones locales
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+docker-logs/
+
+# Archivos de salida temporales
+*.pid
+*.sock
+
+# Volúmenes persistentes locales
+mysql/data/
+pnp4nagios/perfdata/
+*.rrd
+
+# Directorios generados por el sistema o IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# GitHub Codespaces
+.devcontainer/.env
+*.code-workspace
