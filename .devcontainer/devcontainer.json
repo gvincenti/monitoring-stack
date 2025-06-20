@@ -1,0 +1,9 @@
+{
+  \"name\": \"Monitoring Stack\",
+  \"image\": \"mcr.microsoft.com/vscode/devcontainers/base:debian\",
+  \"features\": {
+    \"docker-in-docker\": \"latest\"
+  },
+  \"postCreateCommand\": \"docker-compose up -d --build\",
+  \"remoteUser\": \"vscode\"
+}
