@@ -30,7 +30,7 @@ RUN cd /opt && \
     git clone https://github.com/naemon/naemon-core.git && \
     cd naemon-core && \
     ./autogen.sh && ./configure && make && make install && \
-    make install-config && make install-init
+    make install-init
 
 # Instalar LMD (Livestatus)
 RUN cd /opt && \
