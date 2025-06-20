@@ -15,7 +15,7 @@ RUN cd /opt && \
     make all && make install && make install-webconf || true
 
 # Activar módulos requeridos de Apache
-RUN a2enmod php && a2enmod cgi && service apache2 restart
+RUN a2enmod php7.4 && a2enmod cgi && service apache2 restart
 
 EXPOSE 80
 
