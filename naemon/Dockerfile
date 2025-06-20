@@ -9,21 +9,20 @@ RUN apt-get update && \
     rrdtool librrds-perl gperf libncurses-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Clonar y compilar Naemon (livestatus incluido)
+# Compilar Naemon
 RUN cd /opt && \
     git clone https://github.com/naemon/naemon-core.git && \
     cd naemon-core && \
-    ./autogen.sh && ./configure && make && make install && ldconfig
+    ./autogen.sh && ./configure && make && make install
 
-RUN mkdir -p /etc/naemon && \
-    cp /opt/naemon-core/sample-config/naemon.cfg /etc/naemon/ && \
-    cp /opt/naemon-core/sample-config/resource.cfg /etc/naemon/ && \
-    cp -r /opt/naemon-core/sample-config/objects /etc/naemon/
-    
-# Crear usuario y grupo naemon y preparar carpetas
+# Crear usuario y carpetas
 RUN useradd -m -s /bin/bash naemon && \
     mkdir -p /var/log/naemon /var/lib/naemon/spool/checkresults && \
     chown -R naemon:naemon /var/log/naemon /var/lib/naemon
+
+# Clonar configuración oficial
+RUN git clone https://github.com/naemon/naemon-etc.git /etc/naemon && \
+    chown -R naemon:naemon /etc/naemon
 
 VOLUME ["/etc/naemon", "/var/lib/naemon", "/var/log/naemon"]
 

@@ -1,5 +1,6 @@
 FROM debian:bullseye
 
+# Instalar dependencias
 RUN apt-get update && \
     apt-get install -y \
     nagios-plugins-basic \
@@ -10,17 +11,18 @@ RUN apt-get update && \
     libgearman-dev \
     git \
     autoconf \
-    libtool \
-    libncurses-dev \
-    ca-certificates \
     automake \
+    libtool \
     pkg-config \
-    libssl-dev
+    help2man && \
+    rm -rf /var/lib/apt/lists/*
 
+# Clonar y compilar mod_gearman
 RUN git clone https://github.com/NagiosEnterprises/nagios-mod-gearman.git /opt/mod-gearman && \
-    cd /opt/mod-gearman && ./autogen.sh && ./configure && make all && make install && \
-    ls -l /usr/local/bin && ls -l /usr/local/sbin && ls -l /usr/bin
+    cd /opt/mod-gearman && \
+    ./autogen.sh && ./configure && make all && make install
 
-COPY worker.conf /usr/local/etc/nagios-mod-gearman/worker.conf
+# Copiar configuración del worker
+COPY worker.conf /etc/mod_gearman/worker.conf
 
-CMD ["mod_gearman_worker", "-c", "/usr/local/etc/nagios-mod-gearman/worker.conf"]
+CMD ["/usr/local/bin/nagios-worker", "-c", "/etc/mod_gearman/worker.conf"]
