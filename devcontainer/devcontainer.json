@@ -1,9 +1,9 @@
 {
   "name": "Monitoring Stack",
   "image": "mcr.microsoft.com/devcontainers/base:debian",
-  "features": {
-    "docker-in-docker": "latest"
-  },
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
   "postCreateCommand": "docker compose up -d --build",
   "remoteUser": "vscode"
 }
